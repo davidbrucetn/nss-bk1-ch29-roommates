@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TEcOGTSInXKOS6fU4al2NW6bWCbvTwkXYrIUxgX/mCpudJYLMlQEHk176MsDbNfi65YzXr0DGRE/S3mmHyKVlw==",
+  "dgSpecHash": "t/6WgwPpdd0/yM8SvXiiikoDWeGahKfgm9uPcxDjDZfdeiFuKhnQ1oNh2d7NovLAUuc9NnwAzAkEDfMibUx3+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\roommates\\Roommates.csproj",
+  "projectFilePath": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\Roommates\\Roommates.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sever\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\sever\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

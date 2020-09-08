@@ -60,18 +60,39 @@ namespace Roommates
             Console.WriteLine($"Bathroom new occupancy after update: {bathroom.MaxOccupancy}");
 
             //Delete small bathroom
-            roomRepo.Delete(7);
+            //roomRepo.Delete(7);
 
 
-            Console.WriteLine("Getting All Rooms after delete of 7:");
-            Console.WriteLine();
+            //Console.WriteLine("Getting All Rooms after delete of 7:");
+            //Console.WriteLine();
 
-            allRooms = roomRepo.GetAll();
+            //allRooms = roomRepo.GetAll();
 
-            foreach (Room room in allRooms)
+            //foreach (Room room in allRooms)
+            //{
+            //    Console.WriteLine($"{room.Id} {room.Name} {room.MaxOccupancy}");
+            //}
+
+            //Let's add a roommate
+            //Get Room for John
+            Room frBedroom = roomRepo.GetById(1);
+            //Add object for John
+            Roommate john = new Roommate
             {
-                Console.WriteLine($"{room.Id} {room.Name} {room.MaxOccupancy}");
-            }
+                FirstName = "John",
+                LastName = "Guthas",
+                RentPortion = 700,
+                MoveInDate = DateTime.Now,
+                Room = frBedroom
+
+            };
+            //instantiate roommateRepo
+            /*RoommateRepository roommateRepo = new RoommateRepository(CONNECTION_STRING);
+            roommateRepo.Insert(john);
+            Console.WriteLine($"Added the new Roommate with id {john.Id}");*/
+
+
+
         }
     }
 }

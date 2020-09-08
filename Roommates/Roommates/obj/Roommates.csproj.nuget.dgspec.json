@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\roommates\\Roommates.csproj": {}
+    "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\Roommates\\Roommates.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\roommates\\Roommates.csproj": {
+    "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\Roommates\\Roommates.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\roommates\\Roommates.csproj",
+        "projectUniqueName": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\Roommates\\Roommates.csproj",
         "projectName": "Roommates",
-        "projectPath": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\roommates\\Roommates.csproj",
+        "projectPath": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\Roommates\\Roommates.csproj",
         "packagesPath": "C:\\Users\\sever\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\roommates\\obj\\",
+        "outputPath": "C:\\Users\\sever\\workspace\\csharp\\vstudio_roommates\\Roommates\\Roommates\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
