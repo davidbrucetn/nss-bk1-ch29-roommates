@@ -92,12 +92,16 @@ namespace Roommates
             Console.WriteLine($"Added the new Roommate with id {john.Id}");*/
 
             // Get list of roommates
+            Console.WriteLine("----------- Get Roommate List -------------");
             List<Roommate> AllRoommates =  roommateRepo.GetAll();
             foreach (Roommate roommate in AllRoommates)
             {
                 Console.WriteLine($"{roommate.FirstName} {roommate.LastName} {roommate.RentPortion} {roommate.MoveInDate} {roommate.Room.Name} { roommate.Room.MaxOccupancy}");
             }
 
+            Console.WriteLine("----------- Get Roommate by Id -------------");
+            john = roommateRepo.GetById(4);
+            Console.WriteLine($"{john.FirstName} {john.LastName} {john.RentPortion} {john.MoveInDate} {john.Room.Name} { john.Room.MaxOccupancy}");
         }
     }
 }

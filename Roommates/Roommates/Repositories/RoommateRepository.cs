@@ -119,7 +119,7 @@ namespace Roommates.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = "SELECT Roommate.FirstName, Roommate.LastName, Roommate.RentPortion, Roommate.MoveInDate, Roommate.RoomId, Room.Name, Room.MaxOccupancy FROM Roommate" +
-                        "JOIN Room on Room.Id = Roommate.RoomId WHERE Roommate.Id = @id";
+                        " JOIN Room on Room.Id = Roommate.RoomId WHERE Roommate.Id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
                     SqlDataReader reader = cmd.ExecuteReader();
 
