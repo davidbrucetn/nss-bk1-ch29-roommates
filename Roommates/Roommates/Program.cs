@@ -94,14 +94,40 @@ namespace Roommates
             // Get list of roommates
             Console.WriteLine("----------- Get Roommate List -------------");
             List<Roommate> AllRoommates =  roommateRepo.GetAll();
+            Console.WriteLine("First Name \t Last name \t Rent Portion \t Move In Date \t Room Name \t Max Occupancy");
             foreach (Roommate roommate in AllRoommates)
             {
-                Console.WriteLine($"{roommate.FirstName} {roommate.LastName} {roommate.RentPortion} {roommate.MoveInDate} {roommate.Room.Name} { roommate.Room.MaxOccupancy}");
+                Console.WriteLine($"{roommate.FirstName}\t{roommate.LastName}\t{roommate.RentPortion}\t{roommate.MoveInDate}\t{roommate.Room.Name}\t{roommate.Room.MaxOccupancy}");
             }
 
             Console.WriteLine("----------- Get Roommate by Id -------------");
             john = roommateRepo.GetById(4);
-            Console.WriteLine($"{john.FirstName} {john.LastName} {john.RentPortion} {john.MoveInDate} {john.Room.Name} { john.Room.MaxOccupancy}");
+            Console.WriteLine("First Name \t Last name \t Rent Portion \t Move In Date \t Room Name \t Max Occupancy");
+            Console.WriteLine($"{john.FirstName}\t{john.LastName}\t{john.RentPortion}\t{john.MoveInDate}\t{john.Room.Name}\t{ john.Room.MaxOccupancy}");
+
+            // Update Roommate
+
+            john.Room.Id = 2;
+            roommateRepo.Update(john);
+            Console.WriteLine("----------- Get Roommate by Id After Room Update to Back Bedroom (2) -------------");
+            john = roommateRepo.GetById(4);
+            Console.WriteLine("First Name \t Last name \t Rent Portion \t Move In Date \t Room Name \t Max Occupancy");
+            Console.WriteLine($"{john.FirstName}\t{john.LastName}\t{john.RentPortion}\t{john.MoveInDate}\t{john.Room.Name}\t{ john.Room.MaxOccupancy}");
+
+            // Delete Roommate 
+            Console.WriteLine("---------- We're kicking Karen to the curb --------------");
+            Roommate karen = roommateRepo.GetById(3);
+            roommateRepo.Delete(karen.Id);
+            // Get list of roommates
+            Console.WriteLine("----------- Get Roommate List -------------");
+            List<Roommate> UpdatedRoommates = roommateRepo.GetAll();
+            Console.WriteLine("First Name \t Last name \t Rent Portion \t Move In Date \t Room Name \t Max Occupancy");
+            foreach (Roommate roommate in UpdatedRoommates)
+            {
+                Console.WriteLine($"{roommate.FirstName}\t{roommate.LastName}\t{roommate.RentPortion}\t{roommate.MoveInDate}\t{roommate.Room.Name}\t{roommate.Room.MaxOccupancy}");
+            }
+
+
         }
     }
 }
