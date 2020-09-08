@@ -37,7 +37,7 @@ namespace Roommates.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     // Here we setup the command with the SQL we want to execute before we execute it.
-                    cmd.CommandText = "SELECT Id, Roommate.FirstName, Roommate.LastName, Roommate.RentPortion, Roommate.MoveInDate, Roommate.RoomId, Room.Name, Room.MaxOccupancy" +
+                    cmd.CommandText = "SELECT Roommate.Id as RoommateID, Roommate.FirstName, Roommate.LastName, Roommate.RentPortion, Roommate.MoveInDate, Roommate.RoomId, Room.Name, Room.MaxOccupancy" +
                         " FROM Roommate JOIN Room on Room.Id = Roommate.RoomId";
 
                     // Execute the SQL in the database and get a "reader" that will give us access to the data.
@@ -51,7 +51,7 @@ namespace Roommates.Repositories
                     {
                         // The "ordinal" is the numeric position of the column in the query results.
                         //  For our query, "Id" has an ordinal value of 0 and "Name" is 1.
-                        int idColumnPosition = reader.GetOrdinal("Id");
+                        int idColumnPosition = reader.GetOrdinal("RoommateID");
 
                         // We user the reader's GetXXX methods to get the value for a particular ordinal.
                         int idValue = reader.GetInt32(idColumnPosition);
@@ -63,19 +63,19 @@ namespace Roommates.Repositories
                         string lastNameValue = reader.GetString(lastNameColumnPosition);
 
                         int rentPortionColumnPosition = reader.GetOrdinal("RentPortion");
-                        int rentPortion = reader.GetInt16(rentPortionColumnPosition);
+                        int rentPortion = reader.GetInt32(rentPortionColumnPosition);
 
                         int MoveInDateColumnPosition = reader.GetOrdinal("MoveInDate");
                         var MoveInDateValue = reader.GetDateTime(MoveInDateColumnPosition);
 
                         int roomIdColumnPosition = reader.GetOrdinal("RoomId");
-                        int roomId = reader.GetInt16(roomIdColumnPosition);
+                        int roomId = reader.GetInt32(roomIdColumnPosition);
 
-                        int roomNameColumnPosition = reader.GetOrdinal("RoomName");
+                        int roomNameColumnPosition = reader.GetOrdinal("Name");
                         string roomNameValue = reader.GetString(roomNameColumnPosition);
 
-                        int maxOccupancyColumnPosition = reader.GetOrdinal("RoomName");
-                        int maxOccupancyValue = reader.GetInt16(maxOccupancyColumnPosition);
+                        int maxOccupancyColumnPosition = reader.GetOrdinal("MaxOccupancy");
+                        int maxOccupancyValue = reader.GetInt32(maxOccupancyColumnPosition);
 
 
                         // Now let's create a new room object using the data from the database.

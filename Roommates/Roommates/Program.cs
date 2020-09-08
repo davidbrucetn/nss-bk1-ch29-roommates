@@ -86,12 +86,17 @@ namespace Roommates
                 Room = frBedroom
 
             };
-            //instantiate roommateRepo
-            /*RoommateRepository roommateRepo = new RoommateRepository(CONNECTION_STRING);
-            roommateRepo.Insert(john);
+            //instantiate roommateRepo  202009098 16:21 insert working dwb
+            RoommateRepository roommateRepo = new RoommateRepository(CONNECTION_STRING);
+            /* roommateRepo.Insert(john);
             Console.WriteLine($"Added the new Roommate with id {john.Id}");*/
 
-
+            // Get list of roommates
+            List<Roommate> AllRoommates =  roommateRepo.GetAll();
+            foreach (Roommate roommate in AllRoommates)
+            {
+                Console.WriteLine($"{roommate.FirstName} {roommate.LastName} {roommate.RentPortion} {roommate.MoveInDate} {roommate.Room.Name} { roommate.Room.MaxOccupancy}");
+            }
 
         }
     }
