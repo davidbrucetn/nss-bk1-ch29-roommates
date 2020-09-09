@@ -51,6 +51,25 @@ namespace Roommates
                     case 8:
                         DeleteRoommate();
                         break;
+                    case 9:
+                        ListChores();
+                        break;
+                    case 10:
+                        AddChore();
+                        break;
+                    case 11:
+                        EditChore();
+                        break;
+                    case 12:
+                        DeleteChore();
+                        break;
+                    case 13:
+                        AssignChore();
+                        break;
+                    case 14:
+                        ListAssignedChores();
+                        break;
+
                     case 0:
                         break;
                 }
@@ -66,7 +85,8 @@ namespace Roommates
             string menuResponse = null;
             int result;
             while (!int.TryParse(menuResponse, out result) )
-            { 
+            {
+                Console.WriteLine("------------------ Roommates Main Menu -------------------");
                 Console.WriteLine("Please enter a numeral for a selection: ");
                 Console.WriteLine("1 List Rooms");
                 Console.WriteLine("2 Add a Room");
@@ -76,6 +96,12 @@ namespace Roommates
                 Console.WriteLine("6 Add a Roommate");
                 Console.WriteLine("7 Edit a Roommate");
                 Console.WriteLine("8 Delete a Roommate");
+                Console.WriteLine("9 List chores");
+                Console.WriteLine("10 Add a chore to the chore master list");
+                Console.WriteLine("11 Edit a chore from the master list");
+                Console.WriteLine("12 Delete a chore from the master list");
+                Console.WriteLine("13 Assign chore to a Roommate");
+                Console.WriteLine("14 List Assigned Chores");
                 Console.WriteLine("0 Exit Program");
                 menuResponse = Console.ReadLine();
             }
@@ -83,6 +109,108 @@ namespace Roommates
             
         }
 
+        static void AddChore()
+        {
+            ChoreRepository choreRepo = new ChoreRepository(CONNECTION_STRING);
+            string choreResponse = null;
+            Console.WriteLine("Here is the current list of chores...");
+            ListChores();
+            Console.WriteLine("Enter a chore name or press ENTER to return to the menu: ");
+            choreResponse = Console.ReadLine();
+            if ( choreResponse != "" )
+            {
+                Chore chore = new Chore
+                {
+                    Name = choreResponse
+                };
+                choreRepo.Insert(chore);
+            }
+            ListChores();
+
+        }
+
+        static void ListChores()
+        {
+            ChoreRepository choreRepo = new ChoreRepository(CONNECTION_STRING);
+            List<Chore> AllChores = choreRepo.GetAll();
+            Console.WriteLine("------------------ Chore List -------------------");
+            Console.WriteLine($"ID\tName");
+            foreach (Chore aChor in AllChores)
+            {
+                Console.WriteLine($"{aChor.Id}\t{aChor.Name}");
+            }
+        }
+
+        static void EditChore()
+        {
+            string choreResponse;
+            ChoreRepository choreRepo = new ChoreRepository(CONNECTION_STRING);
+            ListChores();
+            Console.WriteLine("Enter the ID of the Chore to edit: ");
+            Chore chore = choreRepo.GetById(Int32.Parse(Console.ReadLine()));
+            Console.WriteLine("Enter the new name of the chore or press ENTER to cancel: ");
+            choreResponse = Console.ReadLine();
+            if (choreResponse != "")
+            {
+                chore.Name = choreResponse;
+                choreRepo.Update(chore);
+                Console.WriteLine("Chore has been updated.");
+                ListChores();
+            }
+        }
+
+        static void AssignChore()
+        {
+            ChoreRepository choreRepo = new ChoreRepository(CONNECTION_STRING);
+            Console.WriteLine("-------------- Assign a Chore to a Roommate -----------------------");
+            ListAllRoommates();
+            string choreResponse = null;
+            Console.WriteLine("Enter the ID of the Roommate to Assign a Chore: ");
+            choreResponse = Console.ReadLine();
+            if ( choreResponse != "" )
+            {
+                int RoommateId = Int32.Parse(choreResponse);
+                choreResponse = "";
+                ListChores();
+                Console.WriteLine("Enter the ID of the Chore to assign: ");
+                choreResponse = Console.ReadLine();
+                if (choreResponse != "")
+                {
+                    choreRepo.Assign(RoommateId, Int32.Parse(choreResponse));
+
+                }
+
+
+            }
+        }
+
+        static void ListAssignedChores()
+        {
+            ChoreRepository choreRepo = new ChoreRepository(CONNECTION_STRING);
+            Console.WriteLine("-------------- Assigned Chores to Roommates -----------------------");
+            List<string> assignedChores = choreRepo.ListAssigned();
+            Console.WriteLine("RoommateID\tFirst\tLast\tChore");
+            foreach (string line in assignedChores)
+            {
+                Console.WriteLine(line);
+            }
+        }
+
+        static void DeleteChore()
+        {
+            string choreResponse;
+            ChoreRepository choreRepo = new ChoreRepository(CONNECTION_STRING);
+            ListChores();
+            Console.WriteLine("Enter the ID of the Chore to delete: ");
+            choreResponse = Console.ReadLine();
+            Chore chore = choreRepo.GetById(Int32.Parse(choreResponse));
+            if (choreResponse != "")
+            {
+                choreRepo.Delete(chore.Id);
+                Console.WriteLine("Chore has been deleted.");
+                ListChores();
+            }
+        }
         static void BuildARoom()
         {
             string roomName = null;
@@ -198,6 +326,7 @@ namespace Roommates
         {
             // Update Roommate
             RoommateRepository roommateRepo = new RoommateRepository(CONNECTION_STRING);
+            Console.WriteLine("------------------ Roommate List -------------------");
             ListAllRoommates();
             Console.WriteLine("----------- Enter the Id of the Roommate You'd Like to Edit  -------------");
             Roommate roommate = roommateRepo.GetById(Int32.Parse(Console.ReadLine()));
@@ -230,7 +359,7 @@ namespace Roommates
             RoomRepository roomRepo = new RoomRepository(CONNECTION_STRING);
             // Get List of Rooms
 
-            Console.WriteLine("---------------All Room Report-------------");
+            Console.WriteLine("------------------ Room List -------------------");
             Console.WriteLine("Getting All Rooms");
             Console.WriteLine();
             Console.WriteLine($"ID\tName\tMax Occupants");
