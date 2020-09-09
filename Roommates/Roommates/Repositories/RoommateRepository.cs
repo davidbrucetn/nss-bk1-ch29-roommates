@@ -38,7 +38,7 @@ namespace Roommates.Repositories
                 {
                     // Here we setup the command with the SQL we want to execute before we execute it.
                     cmd.CommandText = "SELECT Roommate.Id as RoommateID, Roommate.FirstName, Roommate.LastName, Roommate.RentPortion, Roommate.MoveInDate, Roommate.RoomId, Room.Name, Room.MaxOccupancy" +
-                        " FROM Roommate JOIN Room on Room.Id = Roommate.RoomId";
+                        " FROM Roommate JOIN Room on Room.Id = Roommate.RoomId JOIN RoommateChore on Roommate.Id = RoommateChore.RoommateId";
 
                     // Execute the SQL in the database and get a "reader" that will give us access to the data.
                     SqlDataReader reader = cmd.ExecuteReader();
